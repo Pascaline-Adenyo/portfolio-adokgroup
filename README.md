@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio AdokGroup - ADENYO Komi David
 
-## Getting Started
+Portfolio d'architecte moderne avec espace administrateur pour gérer les projets.
 
-First, run the development server:
+## 🚀 Fonctionnalités
+
+### Site Public
+- ✅ Design moderne et responsive
+- ✅ Section Hero avec call-to-action
+- ✅ À propos de l'architecte
+- ✅ Galerie de projets (chargés depuis la base de données)
+- ✅ Services proposés
+- ✅ Contact avec WhatsApp
+- ✅ Page détail de projet avec galerie d'images
+
+### Espace Admin
+- ✅ Authentification sécurisée
+- ✅ Dashboard pour gérer les projets
+- ✅ Ajout de projets avec :
+  - Titre, description, catégorie
+  - Upload d'image principale
+  - Upload de galerie d'images
+- ✅ Suppression de projets
+- ✅ Preview des projets
+
+## 🛠️ Stack Technique
+
+- **Framework** : Next.js 14 (App Router)
+- **Langage** : TypeScript
+- **Styling** : Tailwind CSS
+- **Base de données** : Vercel Postgres
+- **Authentification** : NextAuth.js
+- **Stockage images** : Vercel Blob
+- **Déploiement** : Vercel (gratuit)
+
+## 📦 Installation
 
 ```bash
+# Cloner le projet
+git clone https://github.com/votre-username/portfolio-adokgroup.git
+
+# Installer les dépendances
+cd portfolio-adokgroup
+npm install
+
+# Configurer les variables d'environnement
+cp .env.example .env.local
+# Éditer .env.local avec vos valeurs
+
+# Lancer en développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visitez http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Déploiement
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Consultez le fichier [GUIDE-DEPLOIEMENT.md](./GUIDE-DEPLOIEMENT.md) pour le guide complet de déploiement sur Vercel.
 
-## Learn More
+## 🔐 Accès Admin
 
-To learn more about Next.js, take a look at the following resources:
+- URL : `/admin/login`
+- Email : Configuré dans `ADMIN_EMAIL`
+- Mot de passe : Configuré dans `ADMIN_PASSWORD` (hashé avec bcrypt)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Structure du projet
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+portfolio-adokgroup/
+├── app/
+│   ├── admin/              # Pages admin
+│   │   ├── login/          # Page de connexion
+│   │   └── page.tsx        # Dashboard admin
+│   ├── api/                # API Routes
+│   │   ├── auth/           # NextAuth
+│   │   ├── projects/       # CRUD projets
+│   │   └── upload/         # Upload images
+│   ├── projet/[id]/        # Page détail projet
+│   └── page.tsx            # Page d'accueil
+├── components/             # Composants React
+├── lib/                    # Utilitaires
+│   ├── db.ts              # Fonctions base de données
+│   ├── auth.ts            # Configuration NextAuth
+│   └── types.ts           # Types TypeScript
+└── scripts/               # Scripts utilitaires
+    └── init-db.js         # Initialisation DB
+```
 
-## Deploy on Vercel
+## 🎨 Personnalisation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Couleurs
+Modifiez les couleurs dans `app/globals.css` :
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```css
+:root {
+  --primary: #111827;
+  --secondary: #1f2937;
+  --accent: #3b82f6;
+}
+```
+
+### Contact
+Modifiez les informations dans `components/Contact.tsx`
+
+### Services
+Modifiez les services dans `components/Services.tsx`
+
+## 📝 Licence
+
+© 2025 ADENYO Komi David - Tous droits réservés
+
+## 👨‍💻 Développeur
+
+Créé avec ❤️ pour AdokGroup
