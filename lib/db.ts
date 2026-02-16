@@ -27,6 +27,7 @@ export async function initDatabase() {
 }
 
 // Récupérer tous les projets
+// Récupérer tous les projets
 export async function getProjects(): Promise<Project[]> {
   try {
     const { rows } = await sql`
@@ -43,13 +44,18 @@ export async function getProjects(): Promise<Project[]> {
       ORDER BY created_at DESC
     `;
     
-    return rows as Project[];
+    // Parse le JSON des images
+    return rows.map(row => ({
+      ...row,
+      images: typeof row.images === 'string' ? JSON.parse(row.images) : row.images
+    })) as Project[];
   } catch (error) {
     console.error('Erreur lors de la récupération des projets:', error);
     return [];
   }
 }
 
+// Récupérer un projet par son ID
 // Récupérer un projet par son ID
 export async function getProjectById(id: number): Promise<Project | null> {
   try {
@@ -67,7 +73,15 @@ export async function getProjectById(id: number): Promise<Project | null> {
       WHERE id = ${id}
     `;
     
-    return rows[0] as Project || null;
+    const project = rows[0];
+    if (!project) return null;
+    
+    // Parse le JSON des images
+    if (typeof project.images === 'string') {
+      project.images = JSON.parse(project.images);
+    }
+    
+    return project as Project;
   } catch (error) {
     console.error('Erreur lors de la récupération du projet:', error);
     return null;
