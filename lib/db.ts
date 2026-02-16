@@ -77,9 +77,10 @@ export async function getProjectById(id: number): Promise<Project | null> {
 // Créer un nouveau projet
 export async function createProject(data: CreateProjectData): Promise<Project | null> {
   try {
+    const imagesJson = JSON.stringify(data.images || []);
     const { rows } = await sql`
       INSERT INTO projects (title, description, category, main_image, images)
-      VALUES (${data.title}, ${data.description}, ${data.category}, ${data.mainImage}, ${data.images})
+      VALUES (${data.title}, ${data.description}, ${data.category}, ${data.mainImage}, ${imagesJson})
       RETURNING 
         id,
         title,
